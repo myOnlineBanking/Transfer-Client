@@ -1,0 +1,108 @@
+#Create new Transfer
+
+POST http://localhost:8081/transfer-client/transferAccountToAccount
+Content-Type: application/json
+
+{
+  "accountFrom": "1234567",
+  "amount": 100,
+  "accountTo": "64873920",
+  "costType": "FROM_OTHER",
+ "transferType": "ACCOUNT_TO_ACCOUNT"
+}
+
+###
+POST https://my-api-gateway-t.herokuapp.com/transfer-client/transferAccountToCash
+Content-Type: application/json
+
+{
+  "accountFrom": "123456789",
+  "amount": 1000,
+  "accountTo": "cin 123",
+  "costType": "FROM_OTHER",
+  "transferType": "ACCOUNT_TO_CASH"
+}
+###
+###
+POST https://my-api-gateway-t.herokuapp.com/transfer-client/transferCashToAccount
+Content-Type: application/json
+
+{
+   "accountFrom": "CIN 123",
+  "amount": 1000,
+  "accountTo": "123456789",
+  "costType": "FROM_OTHER",
+  "transferType": "CASH_TO_ACCOUNT"
+}
+###
+###
+POST https://my-api-gateway-t.herokuapp.com/transfer-client/transferCashToCash
+Content-Type: application/json
+
+{
+ "accountFrom": "vl0H4Jj",
+  "amount": 1000,
+ "accountTo": "cin 123",
+ "costType": "FROM_OTHER",
+ "transferType": "CASH_TO_CASH"
+}
+
+###
+
+POST http://localhost:8081/transfer-client/multipleTransfer
+Content-Type: application/json
+
+[
+{
+  "accountFrom": "123456789",
+  "amount": 1000,
+  "accountTo": "64873920",
+  "costType": "FROM_ME",
+  "transferType": "ACCOUNT_TO_ACCOUNT"
+}
+,
+  {
+  "accountFrom": "123456789",
+  "amount": 1000,
+  "accountTo": "123456789",
+  "costType": "FROM_ME",
+  "transferType": "ACCOUNT_TO_ACCOUNT"
+}
+]
+
+#All Transfers
+###
+#GET https://my-api-gateway-t.herokuapp.com/transfer-client/transfers
+###
+GET http://localhost:8081/transfer-client/transfers
+
+###
+GET http://localhost:8081/transfer-client/getTransferByAccount?accountFrom=61d5a78a814720430e6d6b3f
+Accept: application/json
+
+###
+#Create New Account
+POST https://my-card-service-t.herokuapp.com/Card/create
+Content-Type: application/json
+
+{
+  "accountId": "string",
+  "cardNumber": "HelloWorld",
+  "csv": 142,
+  "dateExpiration": "12/07/2026",
+  "type": "MASTERCARD"
+}
+#####
+GET http://localhost:8081/transfer-client/getTransferByClient?ClienttId=61d49aa49a397467188850ec
+Accept: application/json
+
+
+###
+#Withdraw From ATM
+POST https://transfer-client-service.herokuapp.com/transfer-client/withdraw
+Content-Type: application/json
+
+{
+  "cin": "cin 1232",
+  "reference": "61dae5b2698bc80f475ad44f"
+}
